@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Data by ID</title>
+</head>
+<body>
+    <div id="productDetails"></div>
+    
+    <!-- Import Firebase SDK using script tags -->
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+
+    <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyDCfaNiUWT51Wr4rAQM7Vu808nif5qY_wk",
+  authDomain: "dack2-3697a.firebaseapp.com",
+  databaseURL: "https://dack2-3697a-default-rtdb.firebaseio.com",
+  projectId: "dack2-3697a",
+  storageBucket: "dack2-3697a.appspot.com",
+  messagingSenderId: "503641353094",
+  appId: "1:503641353094:web:7caa63ba8b2770d0035a07",
+  measurementId: "G-5N3ZY6NP71"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // Function to fetch and display product details by ID
+        function fetchProductById(productId) {
+            const productDetails = document.getElementById("productDetails");
+
+            // Reference to the specific product node by ID
+            const productRef = db.ref("users").child(productId);
+
+            // Fetch data once from Firebase
+            productRef.once("value", (snapshot) => {
+                const productData = snapshot.val();
+                if (productData) {
+                    const productName = productData.name;
+                    const productAge = productData.age;
+                    const productBirthday = productData.birthday;
+
+                    // Display product details
+                    productDetails.innerHTML = `
+                        <h2>Product Details</h2>
+                        <p><strong>Name:</strong> ${productName}</p>
+                        <p><strong>Age:</strong> ${productAge}</p>
+                        <p><strong>Birthday:</strong> ${productBirthday}</p>
+                    `;
+                } else {
+                    productDetails.innerHTML = `<p>Product with ID ${productId} not found.</p>`;
+                }
+            });
+        }
+
+        // Example usage: fetch product details by ID
+        const productIdToFetch = "-O02Ds-ojy0p8uAbtC-Z"; // Replace with the ID you want to fetch
+        fetchProductById(productIdToFetch);
+    </script>
+</body>
+</html>

@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"
+    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="/path/to/font-awesome/6.5.0/css/all.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+
+
+</head>
+<style>
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none ;
+    list-style: none;
+    scroll-behavior: smooth;
+}
+:root{
+    --bg-color:#fff;
+    --text-color:#221314;
+    --second-color:#5a7184;
+    --main-color:#6e54fa;
+    --big-font: 6rem;
+    --h2-font:3rem;
+    --p-font:1.1rem;
+}
+body{
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+header{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index:1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    padding: 30px 18%;
+    transition: ease .40s;
+
+}
+.logo{
+    font-size: 35px;
+    font-weight: 600;
+    
+    letter-spacing: 1px;
+    color: var(--bg-color);
+}
+.navbar{
+    display: flex;
+}
+.navbar a{
+    color: var(--bg-color);
+    font-size: var(--p-font);
+    font-weight: 500;
+    padding: 10px 22px;
+    border-radius: 4px;
+    transition: ease .40s;
+}
+.navbar a:hover{
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    box-shadow: 5px 10px 30px rgb(85 85 85/ 20%);
+    border-radius: 4px;
+}
+#menu-icon{
+    color: var(--bg-color);
+    font-size: 35px ;
+    z-index: 10001;
+    cursor: pointer;
+    display: none;
+}
+section{
+    padding: 80px 18%;
+}
+.home{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url(https://firebasestorage.googleapis.com/v0/b/dack2-3697a.appspot.com/o/L%E1%BB%85-h%E1%BB%99i-ph%C3%A1o-hoa-qu%E1%BB%91c-t%E1%BA%BF-%C4%90%C3%A0-N%E1%BA%B5ng-2018.jpg?alt=media&token=39910d53-69fa-43bb-bce8-8c145b1aa334);
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    align-items: center;    
+}
+.home-text h1{
+    font-size: var(--big-font);
+    line-height: 1.2;
+    color: var(--bg-color);
+    font-family: 'Paytone One', sans-serif;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
+.home-text p{
+    color: #ffffffbf;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 38px;
+    margin-bottom: 50px;
+}
+.home-btn{
+    display: inline-block;
+    font-size: 16px;
+    padding: 15px 30px;
+    background: #ffffffbf;
+    color: var(--main-color);
+    border-radius: 4px;
+    transition: ease .40s;
+}
+.home-btn:hover{
+    background: var(--bg-color);
+    transform:  scale(1.1);
+}
+header.sticky{
+background: var(--bg-color);
+padding: 10px 18%;
+box-shadow: rgba(35,35,35,0.1) 0px 10px 10px -10px;
+}
+.sticky .logo{
+    color: var(--text-color);
+}
+.sticky .navbar a{
+    color: var(--text-color);
+
+}
+.text h2{
+    font-size: var(--h2-font);
+    line-height: 1.1;
+}
+.row-items{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, auto)) ;
+    grid-gap: 2rem;
+    align-items: center;
+    text-align: center;
+    margin-top: 5rem;
+}
+.container-box{
+    background: var(--bg-color);
+    border: 1px solid #f0eded;
+    padding: 50px 10px;
+    border-radius: 4px;
+    transition: all 1s ease 0s;
+    cursor: pointer;
+}
+.container-img img{
+    height: 85px;
+    width: 85px;
+    padding: 15px;
+    background: var(--bg-color);
+    box-shadow: 5px 10px 30px rgb(85 85 85/ 20%);
+    border-radius:4px ;
+    margin-bottom: 15px;    
+    cursor: pointer;
+}
+.container-box h4{
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+.container-box p{
+    font-size: 15px;
+    color: var(--second-color);
+}
+.container-box:hover{
+    box-shadow: 5px 30px 56.1276px rgb( 55 55 55 / 12%);
+    border: 1px solid transparent;
+    transform: translateY(-3px);
+}
+.destination-content{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, auto)) ;
+    grid-gap: 2rem;
+    align-items: center;
+    text-align: center;
+    margin-top: 5rem;
+}
+.title{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, auto)) ;
+    grid-gap: 2rem;
+    align-items: center;
+    text-align: center;
+    margin-top: 5rem;
+}
+.col-content{
+    position: relative;
+}
+.col-content img{
+    width: min-content;
+    height: min-content;
+    object-fit: cover;
+    border-radius: 15px;
+    filter: brightness(80%);
+    transition: all .3s cubic-bezier(.495, .05, .55, .95);
+    will-change:filter ;
+}
+.col-content h5{
+position: absolute;
+font-size: 300px;
+font-weight: 800;
+color: var(--bg-color);
+left: 15px;
+bottom: 60px;
+}
+.col-content p{
+    position: absolute;
+font-size: 22px;
+color: var(--bg-color);
+left: 15px;
+bottom: 30px;
+letter-spacing: 2px;
+}
+.col-content img:hover{
+    filter: brightness(100%) hue-rotate(45deg);
+    transform: scale(1.04);
+    cursor: pointer;
+}
+
+
+
+
+@media (max-width:1400px){
+    header{
+        padding: 17px 3%;
+        transition: .2s;
+    }
+    header.sticky{
+        padding: 10px 3%;
+        transition: .2s;
+    }
+    section{
+        padding: 80px 3%;
+        transition: .2s;
+    }
+    :root{
+        --big-font: 4.5rem;
+        --h2-font:2.3rem;
+        --p-font:1rem;
+        transition: .2s;
+    }
+}
+
+@media (max-width:1040px){
+    #menu-icon{
+        display: block;
+    }
+    .sticky #menu-icon{
+        color: var(--text-color);
+    }
+    .home{
+        height: 88vh;
+    }
+    .navbar{
+        position: absolute;
+        top: 0;
+        right: -100%;
+        width: 270px;
+        height: 120vh;
+        background: #1067cc;
+        display: flex;
+        flex-direction: column;
+        align-items:center ;
+        padding: 15px 30px;
+        transition: 0.5s all;
+    }
+    .navbar a{
+        display: block;
+        margin: 1.2rem 0;
+    }
+    .sticky .navbar a{
+        color: var(--bg-color) ;
+    }
+    .navbar a:hover{
+        color: var(--text-color);
+    }
+    .open{
+        right: 0;
+    }
+    .list{
+        width: 50%;
+        margin-bottom: 12px;
+    }
+}
+@media (max-width:575px){
+    :root{
+        --big-font: 3.8rem;
+        --h2-font:1.8rem;
+        transition: .2s;
+    }
+    .text{
+        text-align: center;
+    }
+    .home{
+        height: 85vh;
+        transition: .2s;
+    }
+}
+
+
+
+
+button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 150px;
+      height: 50px;
+      background: #fff;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: 20px;
+      color: #5a7184;
+      font-weight: 500;
+      z-index: 1;
+      transform-origin: bottom right;
+      transition: 1s ease-in-out;
+    }
+
+    button.active {
+      transform: scale(0);
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      background-color: #5a7184;
+      border-radius: 50%;
+      text-decoration: none;
+      box-shadow: 0 5px 10px #5a7184;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .close i {
+      font-size: 20px;
+      color: #fff;
+    }
+
+    .wrapper {
+      position: relative;
+      width: 400px;
+      height: 500px;
+    }
+
+    .wrapper span {
+      display: block;
+      width: 400px;
+      height: 50px;
+      background: #fff;
+      transform: translate(400px, -50px) scale(0);
+      transform-origin: right;
+      margin-bottom: -50px;
+      transition: 0.5s ease-in-out;
+      transition-delay: calc(0.5s/var (--i));
+    }
+
+    .wrapper.active span {
+      transition-delay: calc(0.1s * var(--i));
+      margin-bottom: 0;
+      transform: translate(0, 0) scale(1);
+    }
+
+    .wrapper span:nth-of-type(1) {
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+
+    .wrapper span:nth-of-type(10) {
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+
+    .bg {
+      position: absolute;
+      width: 400px;
+      height: 500px;
+      background: #5a7184;
+    }
+
+    .wrapper.wrapper.show-bg .bg {
+      z-index: 1;
+    }
+
+    .form-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      transform: translate(500px, -200px) scale(0);
+      z-index: 2;
+      transition: transform 0.5s ease-in-out, background 0s,
+        left 0.5s ease-in-out;
+    }
+
+    .wrapper.active .form-wrapper {
+      transition-delay: 1s, 1.8s, 0s;
+      background: #fff;
+      transform: translate(0, 0) scale(1);
+      border-radius: 20px;
+    }
+
+    .wrapper.show-sign .form-wrapper.sign-in {
+      left: -1050px;
+      transition-delay: 0s;
+    }
+
+    .wrapper .form-wrapper.sign-up {
+      transform: translateX(1050px);
+      transition-delay: 0s;
+    }
+
+    .wrapper.show-sign .form-wrapper.sign-up {
+      transform: translateX(0);
+    }
+
+    h2 {
+      font-size: 30px;
+      color: #5a7184;
+      text-align: center;
+    }
+
+    .input-group {
+      position: relative;
+      margin: 30px 0;
+    }
+
+    .input-group label {
+      position: absolute;
+      top: 50%;
+      left: 5px;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #333;
+      padding: 0 5px;
+      pointer-events: none;
+      transition: 0.5s;
+    }
+
+    .input-group input {
+      width: 320px;
+      height: 40px;
+      font-size: 16px;
+      color: #333;
+      padding: 0 10px;
+      background: transparent;
+      border: 1px solid #333;
+      outline: none;
+      border-radius: 5px;
+    }
+
+    .input-group input:focus ~ label,
+    .input-group input:valid ~ label {
+      top: 0;
+      font-size: 12px;
+      background-color: #fff;
+      color: #5a7184;
+    }
+
+    .btn {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background-color: #5a7184;
+      box-shadow: 0 5px 10px #5a7184;
+      font-size: 16px;
+      color: #fff;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: none;
+      border: none;
+      outline: none;
+    }
+
+    .sign-link {
+      font-size: 14px;
+      text-align: center;
+      margin: 25px 0;
+    }
+
+    .sign-link p {
+      color: #333;
+    }
+
+    .sign-link p a {
+      color: #5a7184;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .sign-link p a:hover {
+      text-decoration: underline;
+    }
+
+
+    footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-content p {
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.social-media {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social-media li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.social-media a {
+  color: #fff;
+}
+
+.social-media i {
+  font-size: 20px;
+}
+</style>
+<body>
+    <header>
+        <a href="#" class="logo">Travel</a>
+        <div    class="bx bx-menu" id="menu-icon"></div>
+        <ul class="navbar">
+            <li><a href="#">Trang Chủ</a></li>
+            <li><a href="#">Địa điểm</a></li>
+            <li><a href="#">Liên Hệ</a></li>
+            <li><a href="#">Đăng Nhập</a></li>
+
+        </ul>
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-text">
+            <h1>Lễ Hội  <br>Mùa Hè Việt Nam</h1>
+            <p>  Những Điểm Đến Tuyệt Vời Cho Mùa Hè Sôi Động!  </p>
+            <!-- <a href="" class="home-btn"></a> -->
+        </div>
+    </section>
+    
+    <section class="destination" id="destination">
+        <div class="title">
+            <h2 class="text">Một Số Lế Hội Phổ Biến</h2>
+        </div>
+        <div class="destination-content">
+            <div class="col-content">
+                <img style="height: 300px; width: 550px;" src="https://firebasestorage.googleapis.com/v0/b/dack2-3697a.appspot.com/o/phaohoadn.jpg?alt=media&token=67014e01-2e32-4376-acad-9475058db7e4" alt="">
+                <!-- <h5>Bãi Sao </h5> -->
+                <p>Đà Nẵng</p>
+            </div>
+            <div class="col2-content">
+                <h5 style="size: 100px;">Lễ hội pháo hoa quốc tế Đà Nẵng (DIFF)</h5>
+            </div>
+
+            <div class="col-content">
+                <img  style="height: 300px; width: 550px;"src="https://firebasestorage.googleapis.com/v0/b/dack2-3697a.appspot.com/o/nhatrangfestival.jpg?alt=media&token=39bd84d1-3120-4b1e-a83d-9a016952116b" alt="">
+                <!-- <h5></h5> -->
+                <p>Khánh Hòa</p>
+            </div>
+            <div class="col2-content">
+                <h5> Festival biển Nha Trang  </h5>
+            </div>
+
+            <div class="col-content">
+                <img  style="height: 300px; width: 550px;" src="https://firebasestorage.googleapis.com/v0/b/dack2-3697a.appspot.com/o/caphefestival.jpg?alt=media&token=3163f563-6d9f-4246-bada-529f06d5cb38" alt="">
+                <!-- <h5> Biển Mỹ Khê </h5> -->
+                <p>Buôn Ma Thuột</p>
+            </div>
+            <div class="col2-content">
+                <h5>Lễ hội cà phê Buôn Ma Thuột</h5>
+            </div>
+
+            <div class="col-content">
+                <img style="height: 300px; width: 550px;"src="https://firebasestorage.googleapis.com/v0/b/dack2-3697a.appspot.com/o/huefestival.jpg?alt=media&token=c81c847c-abef-469e-bf6e-757b1b9a9c47" alt="">
+                <!-- <h5>Biển Côn Đảo </h5> -->
+                <p>Huế</p>
+            </div>
+            <div class="col2-content">
+                <h5>Lễ hội khinh khí cầu quốc tế Huế</h5>
+            </div>
+
+            <div class="col-content">
+                <img  style="height: 300px; width: 550px;"src="https://firebasestorage.googleapis.com/v0/b/dack2-3697a.appspot.com/o/sapafestival.webp?alt=media&token=32c5ae7d-d6ad-42e5-965e-1609319728b0" alt="">
+                <!-- <h5> Vịnh Hạ Long</h5> -->
+                <p>Sa Pa</p>
+                
+            </div>
+            <div class="col2-content">
+                <h5>Lễ hội mùa hè Sa Pa</h5>
+            </div>
+        </div>
+        <!-- <div class="title">
+            <a href="">Hơn Nữa</a>
+        </div> -->
+       
+        <section class="container">
+            <div class="text">
+                <h2 class="text">Bắt đầu kỳ nghỉ của bạn  <br> với rất nhiều điều thú vị </h2>
+            </div>
+            <div class="row-items">
+                <div  class="container-box">
+                    <div class="container-img">
+                        <img style="height: 75px; width: 75px; " src="https://firebasestorage.googleapis.com/v0/b/dack2-3697a.appspot.com/o/beach.png?alt=media&token=35f9108a-3f2e-4b7f-8ed2-122ca613c1b6" alt="">
+                    </div>
+                    <h4>Nghĩ Dưỡng</h4>
+                    <p></p>
+                </div>
+                <div class="container-box">
+                    <div class="container-img">
+                        <img style="height: 75px; width: 75px; " src="https://firebasestorage.googleapis.com/v0/b/dack2-3697a.appspot.com/o/travel-and-tourism.png?alt=media&token=d7c74db8-b16a-4b4d-9a35-736d7320a08f" alt="">
+                    </div>
+                    <h4>Du Lịch</h4>
+                    <!-- <p>150 Properties</p> -->
+                </div>
+            </div>
+        </section>
+    </section>
+   
+    <footer>
+        <div class="footer-container">
+          <div class="footer-content">
+            <p>&copy; 2024 TRAVEL</p>
+            <nav>
+              <ul>
+                <li><a href="#">Lễ Hội</a></li>
+                <li><a href="#">Nghĩ Dưỡng</a></li>
+                <li><a href="#">Du Lịch</a></li>
+              </ul>
+            </nav>
+            <ul class="social-media">
+              <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+              <li>Sđt: 0814228329</li>
+              <!-- <li>Gmail: nguyenvantandung1234@gmail.com</li> -->
+            </ul>
+          </div>
+        </div>
+      </footer>
+
+
+
+    
+    <script type="text/javascript">
+        const header = document.querySelector("header")
+        window.addEventListener("scroll", function(){
+            header.classList.toggle("sticky", window.scrollY>0)
+        })
+
+        let menu = document.querySelector('#menu-icon')
+        let navbar = document.querySelector('.navbar')
+
+        menu.onclick = () =>{
+            menu.classList.toggle('bx-x')
+            navbar.classList.toggle('open')
+        }
+    </script>
+</body>
+</html>

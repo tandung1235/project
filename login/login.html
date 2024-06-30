@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      /* background: #5a7184; */
+      overflow: hidden;
+    }
+
+    button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 150px;
+      height: 50px;
+      background: #fff;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: 20px;
+      color: #5a7184;
+      font-weight: 500;
+      z-index: 1;
+      transform-origin: bottom right;
+      transition: 1s ease-in-out;
+    }
+
+    button.active {
+      transform: scale(0);
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      background-color: #5a7184;
+      border-radius: 50%;
+      text-decoration: none;
+      box-shadow: 0 5px 10px #5a7184;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .close i {
+      font-size: 20px;
+      color: #fff;
+    }
+
+    .wrapper {
+      position: relative;
+      width: 400px;
+      height: 500px;
+    }
+
+    .wrapper span {
+      display: block;
+      width: 400px;
+      height: 50px;
+      background: #fff;
+      transform: translate(400px, -50px) scale(0);
+      transform-origin: right;
+      margin-bottom: -50px;
+      transition: 0.5s ease-in-out;
+      transition-delay: calc(0.5s/var (--i));
+    }
+
+    .wrapper.active span {
+      transition-delay: calc(0.1s * var(--i));
+      margin-bottom: 0;
+      transform: translate(0, 0) scale(1);
+    }
+
+    .wrapper span:nth-of-type(1) {
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+
+    .wrapper span:nth-of-type(10) {
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+
+    .bg {
+      position: absolute;
+      width: 400px;
+      height: 500px;
+      background: #5a7184;
+      display: none;
+    }
+
+    .wrapper.wrapper.show-bg .bg {
+      z-index: 1;
+    }
+
+    .form-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      transform: translate(500px, -200px) scale(0);
+      z-index: 2;
+      transition: transform 0.5s ease-in-out, background 0s,
+        left 0.5s ease-in-out;
+    }
+
+    .wrapper.active .form-wrapper {
+      transition-delay: 1s, 1.8s, 0s;
+      background: #fff;
+      transform: translate(0, 0) scale(1);
+      border-radius: 20px;
+    }
+
+    .wrapper.show-sign .form-wrapper.sign-in {
+      left: -1050px;
+      transition-delay: 0s;
+    }
+
+    .wrapper .form-wrapper.sign-up {
+      transform: translateX(1050px);
+      transition-delay: 0s;
+    }
+
+    .wrapper.show-sign .form-wrapper.sign-up {
+      transform: translateX(0);
+    }
+
+    h2 {
+      font-size: 30px;
+      color: #5a7184;
+      text-align: center;
+    }
+
+    .input-group {
+      position: relative;
+      margin: 30px 0;
+    }
+
+    .input-group label {
+      position: absolute;
+      top: 50%;
+      left: 5px;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #333;
+      padding: 0 5px;
+      pointer-events: none;
+      transition: 0.5s;
+    }
+
+    .input-group input {
+      width: 320px;
+      height: 40px;
+      font-size: 16px;
+      color: #333;
+      padding: 0 10px;
+      background: transparent;
+      border: 1px solid #333;
+      outline: none;
+      border-radius: 5px;
+    }
+
+    .input-group input:focus ~ label,
+    .input-group input:valid ~ label {
+      top: 0;
+      font-size: 12px;
+      background-color: #fff;
+      color: #5a7184;
+    }
+
+    .btn {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background-color: #5a7184;
+      box-shadow: 0 5px 10px #5a7184;
+      font-size: 16px;
+      color: #fff;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: none;
+      border: none;
+      outline: none;
+    }
+
+    .sign-link {
+      font-size: 14px;
+      text-align: center;
+      margin: 25px 0;
+    }
+
+    .sign-link p {
+      color: #333;
+    }
+
+    .sign-link p a {
+      color: #5a7184;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .sign-link p a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <body>
+    <button class="toggle-login">Login</button>
+    <div class="wrapper">
+      <div class="form-wrapper sign-in">
+        <a href="#" class="close"><i class="fa-solid fa-xmark"></i></a>
+        <form action="">
+          <h2>Login</h2>
+          <div class="input-group">
+            <input id="email" type="text" required autocomplete="email" />
+            <label>Email</label>
+          </div>
+          <div class="input-group">
+            <input
+              id="password"
+              type="password"
+              required
+              autocomplete="current-password"
+            />
+            <label>Password</label>
+          </div>
+          <button type="submit" class="btn" id="loginBtn">Login</button>
+          <div class="sign-link">
+            <p>Don't have an account?<a class="signUp-link">Sign Up</a></p>
+          </div>
+        </form>
+      </div>
+      <div class="form-wrapper sign-up">
+        <form action="">
+          <h2>Sign Up</h2>
+          <div class="input-group">
+            <input id="username" type="text" required />
+            <label>Username</label>
+          </div>
+          <div class="input-group">
+            <input id="email1" type="email" required autocomplete="email" />
+            <label>Email</label>
+          </div>
+          <div class="input-group">
+            <input
+              id="password1"
+              type="password"
+              required
+              autocomplete="new-password"
+            />
+            <label>Password</label>
+          </div>
+          <button type="submit" class="btn" id="registerBtn">Sign Up</button>
+          <div class="sign-link">
+            <p>Already have an account?<a class="signIn-link">Sign In</a></p>
+          </div>
+        </form>
+      </div>
+      <div class="bg"></div>
+      <span style="--i: 10"></span>
+      <span style="--i: 9"></span>
+      <span style="--i: 8"></span>
+      <span style="--i: 7"></span>
+      <span style="--i: 6"></span>
+      <span style="--i: 5"></span>
+      <span style="--i: 4"></span>
+      <span style="--i: 3"></span>
+      <span style="--i: 2"></span>
+      <span style="--i: 1"></span>
+    </div>
+    <!-- Import Firebase scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script>
+      // Your Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDCfaNiUWT51Wr4rAQM7Vu808nif5qY_wk",
+        authDomain: "dack2-3697a.firebaseapp.com",
+        projectId: "dack2-3697a",
+        storageBucket: "dack2-3697a.appspot.com",
+        messagingSenderId: "503641353094",
+        appId: "1:503641353094:web:7caa63ba8b2770d0035a07",
+        measurementId: "G-5N3ZY6NP71",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+
+      // Đăng nhập
+      function signIn(event) {
+        event.preventDefault();
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        auth
+          .signInWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            // Đăng nhập thành công, bạn có thể thực hiện các hành động khác tại đây
+            var user = userCredential.user;
+            console.log(user);
+            window.location.href = "";
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // Xử lý lỗi đăng nhập
+            console.error(errorMessage);
+          });
+      }
+
+      // Đăng ký
+      function signUp(event) {
+        event.preventDefault();
+        var email = document.getElementById("email1").value;
+        var password = document.getElementById("password1").value;
+        auth
+          .createUserWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            // Đăng ký thành công, bạn có thể thực hiện các hành động khác tại đây
+            var user = userCredential.user;
+            console.log(user);
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // Xử lý lỗi đăng ký
+            console.error(errorMessage);
+          });
+      }
+
+      // Gán sự kiện click cho button
+      document.getElementById("loginBtn").addEventListener("click", signIn);
+      document.getElementById("registerBtn").addEventListener("click", signUp);
+    </script>
+    <script>
+      const wrapper = document.querySelector(".wrapper");
+      const signUpLink = document.querySelector(".signUp-link");
+      const signInLink = document.querySelector(".signIn-link");
+      const toggleLogin = document.querySelector(".toggle-login");
+      const close = document.querySelector(".close");
+
+      signUpLink.addEventListener("click", () => {
+        wrapper.classList.toggle("show-sign");
+        wrapper.classList.add("show-bg");
+      });
+
+      signInLink.addEventListener("click", () => {
+        wrapper.classList.toggle("show-sign");
+        wrapper.classList.add("show-bg");
+      });
+
+      toggleLogin.addEventListener("click", () => {
+        toggleLogin.classList.toggle("active");
+        wrapper.classList.toggle("active");
+      });
+
+      close.addEventListener("click", () => {
+        toggleLogin.classList.toggle("active");
+        wrapper.classList.toggle("active");
+        wrapper.classList.remove("show-bg");
+      });
+    </script>
+  </body>
+</html>

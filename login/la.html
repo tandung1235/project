@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+    <script>
+         const firebaseConfig = {
+        apiKey: "AIzaSyDCfaNiUWT51Wr4rAQM7Vu808nif5qY_wk",
+        authDomain: "dack2-3697a.firebaseapp.com",
+        databaseURL: "https://dack2-3697a-default-rtdb.firebaseio.com",
+        projectId: "dack2-3697a",
+        storageBucket: "dack2-3697a.appspot.com",
+        messagingSenderId: "503641353094",
+        appId: "1:503641353094:web:7caa63ba8b2770d0035a07",
+        measurementId: "G-5N3ZY6NP71",
+      };
+
+
+      import { getStorage, ref, getDownloadURL } from "firebase/storage";
+
+const storage = getStorage();
+getDownloadURL(ref(storage, 'beach.png'))
+  .then(() => {
+    // `url` is the download URL for 'images/stars.jpg'
+
+    // This can be downloaded directly:
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob';
+    xhr.onload = (event) => {
+      const blob = xhr.response;
+    };
+    xhr.open('GET', );
+    xhr.send();
+
+    // Or inserted into an <img> element
+    const img = document.getElementById('myimg');
+    img.setAttribute('src', );
+  })
+  .catch((error) => {
+    // Handle any errors
+  });
+
+    </script>
+</body>
+</html>

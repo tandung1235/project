@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="name" placeholder="Name" />
+    <input type="number" id="age" placeholder="Age" />
+    <input type="date" id="birthday" placeholder="Birthday" />
+    <button id="btnRegister">Register</button>
+
+    <!-- Import Firebase SDK using script tags -->
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script> <!-- Sửa đổi đường dẫn để import Firebase Realtime Database -->
+
+    <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDCfaNiUWT51Wr4rAQM7Vu808nif5qY_wk",
+  authDomain: "dack2-3697a.firebaseapp.com",
+  databaseURL: "https://dack2-3697a-default-rtdb.firebaseio.com",
+  projectId: "dack2-3697a",
+  storageBucket: "dack2-3697a.appspot.com",
+  messagingSenderId: "503641353094",
+  appId: "1:503641353094:web:7caa63ba8b2770d0035a07",
+  measurementId: "G-5N3ZY6NP71"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database(); // Sử dụng firebase.database() để truy cập Realtime Database
+
+        // Function to register user
+        function registerUser() {
+            const name = document.getElementById("name").value;
+            const age = document.getElementById("age").value;
+            const birthday = document.getElementById("birthday").value;
+
+            // Save user data to Realtime Database
+            db.ref("users").push({
+                name: name,
+                age: age,
+                birthday: birthday
+            }, (error) => {
+                if (error) {
+                    console.error("Error adding document: ", error);
+                    alert("Failed to register user. Please try again.");
+                } else {
+                    console.log("User registered successfully!");
+                    alert("User registered successfully!");
+                }
+            });
+        }
+
+        // Add event listener to register button
+        document.getElementById("btnRegister").addEventListener("click", registerUser);
+
+//         import { getDatabase, ref, child, get } from "firebase/database";
+
+// const dbRef = ref(getDatabase());
+// get(child(dbRef, `users/${userId}`)).then((snapshot) => {
+//   if (snapshot.exists()) {
+//     console.log(snapshot.val());
+//   } else {
+//     console.log("No data available");
+//   }
+// }).catch((error) => {
+//   console.error(error);
+// });
+    </script>
+</body>
+</html>
